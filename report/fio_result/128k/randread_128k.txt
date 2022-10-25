@@ -1,0 +1,29 @@
+randread: (g=0): rw=randread, bs=128K-128K/128K-128K/128K-128K, ioengine=psync, iodepth=1
+...
+fio-2.1.10
+Starting 16 threads
+
+randread: (groupid=0, jobs=16): err= 0: pid=101640: Wed Sep 14 14:48:57 2022
+  read : io=458112KB, bw=456287KB/s, iops=3564, runt=  1004msec
+    clat (msec): min=1, max=134, avg= 4.48, stdev= 2.19
+     lat (msec): min=1, max=134, avg= 4.48, stdev= 2.19
+    clat percentiles (msec):
+     |  1.00th=[    4],  5.00th=[    4], 10.00th=[    5], 20.00th=[    5],
+     | 30.00th=[    5], 40.00th=[    5], 50.00th=[    5], 60.00th=[    5],
+     | 70.00th=[    5], 80.00th=[    5], 90.00th=[    5], 95.00th=[    5],
+     | 99.00th=[    6], 99.50th=[    6], 99.90th=[    6], 99.95th=[    6],
+     | 99.99th=[  135]
+    bw (KB  /s): min=21375, max=29067, per=6.23%, avg=28416.67, stdev=1620.14
+    lat (msec) : 2=0.11%, 4=5.87%, 10=93.99%, 250=0.03%
+  cpu          : usr=0.04%, sys=0.27%, ctx=3593, majf=0, minf=512
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=3579/w=0/d=0, short=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+   READ: io=458112KB, aggrb=456286KB/s, minb=456286KB/s, maxb=456286KB/s, mint=1004msec, maxt=1004msec
+
+Disk stats (read/write):
+  sda: ios=3563/0, merge=0/0, ticks=15775/0, in_queue=13268, util=58.48%
