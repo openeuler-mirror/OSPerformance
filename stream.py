@@ -8,7 +8,7 @@ import os
 path = './'
 # 调用执行测试系统的shell脚本
 # os.chdir('stream')
-os.system('sh stream1.sh')
+os.system('sh stream.sh')
 
 print(os.getcwd())
 
@@ -150,4 +150,4 @@ row += 1
 write_stream_excel(Traid_value2, row)
 
 # # 保存表格
-bw.save(path + 'report/' + 'stream1.xlsx')
+bw.save(path + 'report/' + 'stream.xlsx')
