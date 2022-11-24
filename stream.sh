@@ -20,56 +20,60 @@ echo `pwd`
 cd src/
 
 #判断stream目录是否存在，如果存在就删除并且打印目录被删除
-if [ -d "stream-5.10-1" ]
+if [ -d "STREAM" ]
 then
-    rm -rf stream-5.10-1
-    echo "删除当前目录已解压的stream-5.10-1文件"
+    cd STREAM
+else
+    echo "请检查当前目录是否存在STREAM源码包"
 fi
-
-#解压当前src目录下的stream.zip，并且打印出unzip命令的执行结果
-tar -jxvf stream-5.10-1.tar.bz2
 echo "tar retrun is $?"
-
-#进入到stream目录,并打印出cd命令执行的结果
-cd stream-5.10-1
-echo "cd return is $?"
 #取出cpu核数的值
-cpus=`sudo lscpu|grep -w "CPU:"|head -1|awk '{print$2}'`
+if [ -x "$(command -v yum)" ]; 
+then
+       echo "r system"
+       cpus=`sudo lscpu|grep -w "CPU:"|head -1|awk '{print$2}'`
+       echo "cpu大小为：$cpus"
+       L3Cache=`lscpu |grep -w "L3"|awk '{print$3}'`
+       L3unit=`echo ${L3Cache: -1}`
+       L3=`echo ${L3Cache%$L3unit}`
+       echo "r系统三级缓存大小为：$L3"
+       echo "三级缓存单位为：$L3unit"   
+       
+
+elif [ -x "$(command -v apt-get)" ]; 
+
+then
+	cpus=`sudo lscpu|grep -w "CPU(s):"|head -1|awk '{print$2}'`
+       echo "d system"
+       L3=`lscpu |grep -w "L3"|awk '{print$3}'`
+       L3unit=`lscpu |grep -w "L3"|awk '{print$4}'`
+       echo "d系统三级缓存大小为：$L3"
+       echo "系统三级缓存单位为：$L3unit"
+else	
+	echo "请执行lscpu明令查看获取cpu的字段是啥，替换下一行命令中的CUP(CPUS(s)后重新执行"
+	cpus=`sudo lscpu|grep -w "CPU(s)"|head -1|awk '{print$2}'`
+fi
+echo "a"
+
 echo "cpu核数为：$cpus"
 
-L3=`lscpu |grep -w "L3"|awk '{print$3}'`
-echo "三级缓存大小为：$L3"
-#model=`echo ${L3:%$model1}`
-#echo "$model"
-#判断单位
-model1=`echo ${L3: -1}`
-echo "三级缓存单位为：$model1"
-
-L3cache=`echo ${L3%$model1}`
-echo "三级缓存单位为K的值是$L3cache"
-#model=`echo ${L3%$model1}`
-#echo "$model"
-
-if [ "$model1" = "K" ]
+b=1024
+if [ "$L3unit" = "K" ]
 then
-   # L3cache=`echo ${L3%$model1}`
-   #echo "三级缓存单位为K的值是$L3cache"
-   # L3cache=`expr $model \* $b` 
-   # echo "$L3cache"
-    size=`expr $cpus \* $L3cache / $b \* 4 / 8`
-    echo "数组长度：$size"
-else [ "$model1" = "MB" ]
-    size=`expr $cpus \* $L3cache \* 4 / 8`
-    echo "数组长度：$size"
+    size=`expr $cpus \* $L3 / $b \* 4 / 8 `
+    echo "数组长度：$size "
+else [ "$L3unit" = "MiB" ]
+    size=`expr $cpus \* $L3 \* 4 / 8 `
+    echo "数组长度：$size "
 fi
-#b=1024
-#cache=`dmidecode -t cache|grep "Installed Size"|awk '{print$3}' | tail -1`
-#cachem=$(expr $cache / $b)
-#echo "三级缓存单位为MB的值是$cachem"
 
-sed -i 93s/9663676416/$size/g stream.c
-echo "change_size1 return is $?"
 
+if sed -i 94s/10000000/$size/g stream.c
+then
+	echo "change_size1 return is $?"
+else
+	echo "make the second times to test,no need to change the SIZE value."
+fi
 #stream性能执行的结果输入到上上级别目录的单线程.txt文件中，并打印结果
 if [ -d "../../report/stream_results" ] 
 then
@@ -82,17 +86,18 @@ else
 fi
 mkdir ../../report/stream_results/
 
-make
+#make
+gcc -O2 -mcmodel=large stream.c -o stream
+echo "-o stream return is $?"
+gcc -O2 -mcmodel=large -fopenmp  stream.c -o stream_mu
+echo "-o stream_mu return is $?"
 
-./stream >../../report/stream_results/单线程.txt
+./stream > ../../report/stream_results/单线程.txt
 echo "single_test return is $?"
 echo "结果成功写入单线程.txt"
 
 #stream性能执行的结果输入到上层目录的满线程.txt文件中，并打印结果
-./stream_mu >../../report/stream_results/满线程.txt
-echo "test_full return is$?"
+./stream_mu > ../../report/stream_results/满线程.txt
+echo "test_full return is $?"
 echo "结果成功写入满线程.txt"
-
-
-
 
