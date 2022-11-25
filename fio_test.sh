@@ -15,9 +15,9 @@
 # 第二个参数为运行时间可以为数字
 DIRPATH=`pwd`
 cd $DIRPATH/src/ || exit 1
-if ls ./fio-2.1.10
+if ls ./fio
 then
-	cd ./fio-2.1.10
+	cd ./fio
 else
     echo "fio软件包不存在，请检查是否被删除"
     sleep 2

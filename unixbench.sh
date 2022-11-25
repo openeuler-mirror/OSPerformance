@@ -11,49 +11,39 @@
 
 #进入测试工具目录
 cd src || exit 1
-
-#检查测试套是否存在，存在就删掉，主要是为了防止多次运行，数据混乱
-if [ -a ./UnixBench ]
-then
-    echo "UnixBench已存在，删除！！"
-    rm -rf ./UnixBench
-fi
-
-echo "正在解压"
-tar -xvf UnixBench5.1.3-1.tar.bz2
-echo "解压完成"
-
+#echo "cd src return is $?" 
 
 #进入测试套
-cd UnixBench5.1.3-1 || exit 1
+cd UnixBench || exit 1
+rm -rf results/*
+make clean
 
 #取出cpu核数的值
-cpus=`sudo lscpu|grep -w "CPU:"|head -1|awk '{print$2}'`
-echo "$cpus"
-
-sed -i 109s/128/$cpus/g  Run
-echo "change_size1 return is $?"
-
-
-#执行单核用例
-echo "正在进行单核测试。。。"
-if ./Run
+if [ -x "$(command -v yum)" ];
 then
-     echo "测试完成"
+       echo "r system"
+       cpus=`sudo lscpu|grep -w "CPU:"|head -1|awk '{print$2}'`
+       echo "cpu大小为：$cpus"
+elif [ -x "$(command -v apt-get)" ];
+then
+       cpus=`sudo lscpu|grep -w "CPU(s):"|head -1|awk '{print$2}'`
+       echo "d system"
+       echo "cpu大小为：$cpus"
 else
-     echo "测试失败"
+        echo "请执行lscpu明令查看获取cpu的字段，替换下一行命令中的CUP(CPUS(s)后重新执行"
+        cpus=`sudo lscpu|grep -w "CPU(s)"|head -1|awk '{print$2}'` || exit 1
 fi
 
-##将命令获取的cpu核数赋值给cpus
-cpus=$(lscpu |grep "CPU:"| awk '{print $2}'|sed -n '1,1p')
-#
-执行满核用例
+#sed -i 109s/16/$cpus/g  Run
+#echo "change_size1 return is $?"
+
 echo "正在进行满核测试。。。"
-if ./Run -c "${cpus}"
+if ./Run -c 1 -c  $cpus
+#if ./Run -c 1 -c 2
 then
      echo "满核测试完成"
 else
-     echo "满核测试失败"
+     echo "满核测试失败"  || exit 1
 fi
 
 
@@ -79,4 +69,5 @@ cp  results/* ../../report/unixbench_results
 cd ../../ || exit 1
 rm -rf report/unixbench_results/*.html
 rm -rf report/unixbench_results/*.log
+python3 unixbench.py
 echo "complete!"

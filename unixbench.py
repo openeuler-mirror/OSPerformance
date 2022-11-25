@@ -12,7 +12,7 @@ import socket
 path = './'
 
 print(os.getcwd())
-#os.system('sh unixbench.sh')
+#os.system('sh unixbench2.sh')
 
 
 #"""
@@ -24,19 +24,8 @@ hostname=socket.gethostname()
 print(hostname)
 
 file1=path+'report/unixbench_results/'+hostname+'-'+date+'-01'
-file2=path+'report/unixbench_results/'+hostname+'-'+date+'-02'
-print(file1)
-print(file2)
-#"""
-"""
-file1=path+'report/unixbench_results/'+'localhost.localdomain-2022-11-02-01'
 print(file1)
 
-file2=path+'report/unixbench_results/'+'localhost.localdomain-2022-11-02-05'
-
-
-print(file2)
-"""
 def get_unixbench_value(keyword, downrow, file):
     with open(file, "r+") as f:
         readlines = f.readlines()
@@ -49,11 +38,11 @@ def get_unixbench_value(keyword, downrow, file):
             else:
                 number += 1
 
-    print("number = %d" % number)
+#    print("number = %d" % number)
     row = number + downrow
     read_value = linecache.getline(file, row)
     value = read_value.split()
-    print("value = %s\n" % value)
+#    print("value = %s\n" % value)
     return value
 
 
@@ -64,7 +53,7 @@ def write_unixbench_excel(dict, row_1):
 
 
 if os.path.exists(path + 'report/' + 'unixbench.xlsx'):
-    os.system('rm -rf unixbench.xlsx')
+    os.system('rm -rf ./report/unixbench.xlsx')
 
 # 新建一个工作薄
 bw = openpyxl.Workbook()
@@ -209,11 +198,14 @@ write_unixbench_excel(System_Benchmarks_Index_Score, row)
 print(row)
 
 # 满核测试
+#"""
 from multiprocessing import cpu_count
 print(cpu_count())
 cpus=cpu_count()
 keyword1=str(cpus)+' '+'parallel'
 print(keyword1)
+#"""
+
 ws.cell(row=16, column=1, value=test_item[1])
 
 Dhrystone_2using_register_variables1 = {'name': 'Dhrystone_2_using_register_variables',
@@ -221,7 +213,7 @@ Dhrystone_2using_register_variables1 = {'name': 'Dhrystone_2_using_register_vari
                                         'downrow': 16,
                                         }
 Dhrystone_2using_register_variables1['value'] = get_unixbench_value(keyword1,
-                                                                    Dhrystone_2using_register_variables1['downrow'],file2)[-1]
+                                                                    Dhrystone_2using_register_variables1['downrow'],file1)[-1]
 
 print(file1)
 
@@ -230,78 +222,78 @@ Double_Precision_Whetstone1 = {'name': 'Dhrystone_2_using_register_variables',
                                'downrow': 17,
                                }
 Double_Precision_Whetstone1['value'] = get_unixbench_value(keyword1,
-                                                           Double_Precision_Whetstone1['downrow'],file2)[-1]
+                                                           Double_Precision_Whetstone1['downrow'],file1)[-1]
 
 Execl_Throughput1 = {'name': 'Execl Throughput',
                      'explain': '计算每秒钟出现的execl调用数',
                      'downrow': 18,
                      }
-Execl_Throughput1['value'] = get_unixbench_value(keyword1, Execl_Throughput1['downrow'],file2)[-1]
+Execl_Throughput1['value'] = get_unixbench_value(keyword1, Execl_Throughput1['downrow'],file1)[-1]
 
 File_Copy_1024_bufsize_2000_1 = {'name': 'File_Copy_1024_bufsize_2000_maxblocks',
                                  'explain': '获得在指定时间内能够读、写、复制的字符数目-1',
                                  'downrow': 19,
                                  }
 File_Copy_1024_bufsize_2000_1['value'] = get_unixbench_value(keyword1,
-                                                             File_Copy_1024_bufsize_2000_1['downrow'],file2)[-1]
+                                                             File_Copy_1024_bufsize_2000_1['downrow'],file1)[-1]
 
 File_Copy_256_bufsize_500_1 = {'name': 'File_Copy_256_bufsize_500_maxblocks',
                                'explain': '获得在指定时间内能够读、写、复制的字符数目-2',
                                'downrow': 20,
                                }
 File_Copy_256_bufsize_500_1['value'] = get_unixbench_value(keyword1,
-                                                           File_Copy_256_bufsize_500_1['downrow'],file2)[-1]
+                                                           File_Copy_256_bufsize_500_1['downrow'],file1)[-1]
 
 File_Copy_4096_bufsize_8000_1 = {'name': 'File_Copy_4096_bufsize_8000_maxblocks',
                                  'explain': '获得在指定时间内能够读、写、复制的字符数目-3',
                                  'downrow': 21,
                                  }
 File_Copy_4096_bufsize_8000_1['value'] = get_unixbench_value(keyword1,
-                                                             File_Copy_4096_bufsize_8000_1['downrow'],file2)[-1]
+                                                             File_Copy_4096_bufsize_8000_1['downrow'],file1)[-1]
 
 Pipe_Throughput1 = {'name': 'Pipe Throughput',
                     'explain': '管道吞吐量',
                     'downrow': 22,
                     }
-Pipe_Throughput1['value'] = get_unixbench_value(keyword1, Pipe_Throughput1['downrow'],file2)[-1]
+Pipe_Throughput1['value'] = get_unixbench_value(keyword1, Pipe_Throughput1['downrow'],file1)[-1]
 
 Pipe_based_Context_Switching1 = {'name': 'Pipe_based_Context_Switching',
                                  'explain': '计算两个进程通过管道交换一个增长的整数的次数',
                                  'downrow': 23,
                                  }
 Pipe_based_Context_Switching1['value'] = get_unixbench_value(keyword1,
-                                                             Pipe_based_Context_Switching1['downrow'],file2)[-1]
+                                                             Pipe_based_Context_Switching1['downrow'],file1)[-1]
 
 Process_Creation1 = {'name': 'Process_Creation',
                      'explain': '计算一个进程派生和收获一个马上退出的子进程的次数',
                      'downrow': 24,
                      }
-Process_Creation1['value'] = get_unixbench_value(keyword1, Process_Creation1['downrow'],file2)[-1]
+Process_Creation1['value'] = get_unixbench_value(keyword1, Process_Creation1['downrow'],file1)[-1]
 
 Shell_Scripts_11 = {'name': 'Shell_Scripts(1 concurrent)',
                     'explain': '每秒进程能够启动和收获一组1个shell脚本程序的并行的拷贝的次数',
                     'downrow': 25,
                     }
-Shell_Scripts_11['value'] = get_unixbench_value(keyword1, Shell_Scripts_11['downrow'],file2)[-1]
+Shell_Scripts_11['value'] = get_unixbench_value(keyword1, Shell_Scripts_11['downrow'],file1)[-1]
 
 Shell_Scripts_81 = {'name': 'Process_Creation',
                     'explain': '每秒进程能够启动和收获一组8个shell脚本程序的并行的拷贝的次数',
                     'downrow': 26,
                     }
-Shell_Scripts_81['value'] = get_unixbench_value(keyword1, Shell_Scripts_81['downrow'],file2)[-1]
+Shell_Scripts_81['value'] = get_unixbench_value(keyword1, Shell_Scripts_81['downrow'],file1)[-1]
 
 System_Call_Overhead1 = {'name': 'System Call Overhead',
                          'explain': '进入和离开系统内核的消耗',
                          'downrow': 27,
                          }
-System_Call_Overhead1['value'] = get_unixbench_value(keyword1, System_Call_Overhead1['downrow'],file2)[-1]
+System_Call_Overhead1['value'] = get_unixbench_value(keyword1, System_Call_Overhead1['downrow'],file1)[-1]
 
 System_Benchmarks_Index_Score1 = {'name': 'System Benchmarks Index Score',
                                   'explain': '系统基准指数得分',
                                   'downrow': 29,
                                   }
 System_Benchmarks_Index_Score1['value'] = get_unixbench_value(keyword1,
-                                                              System_Benchmarks_Index_Score1['downrow'],file2)[-1]
+                                                              System_Benchmarks_Index_Score1['downrow'],file1)[-1]
 
 row = 17
 write_unixbench_excel(Dhrystone_2using_register_variables1, row)
@@ -331,5 +323,5 @@ row += 1
 write_unixbench_excel(System_Benchmarks_Index_Score1, row)
 row += 1
 
-bw.save(path + 'report/' + 'unixbench7.xlsx')
+bw.save(path + 'report/' + 'unixbench.xlsx')
 
