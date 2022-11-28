@@ -12,7 +12,7 @@
 #进入测试工具目录
 cd src || exit 1
 #echo "cd src return is $?" 
-
+chmod -R 777 UnixBench
 #进入测试套
 cd UnixBench || exit 1
 rm -rf results/*
@@ -36,6 +36,7 @@ fi
 
 #sed -i 109s/16/$cpus/g  Run
 #echo "change_size1 return is $?"
+chmod -R 777 Run
 
 echo "正在进行满核测试。。。"
 if ./Run -c 1 -c  $cpus
