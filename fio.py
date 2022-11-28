@@ -21,8 +21,8 @@ import time
 
 path = './'
 print(os.getcwd())
-os.system('sh fio_compile.sh')
-#os.system('sh fio_test1.sh')
+os.system("bash fio_compile.sh %s %s" %(FILENAME, RUNTIME))
+#os.system('sh fio_test.sh')
 def get_file_bw_value(File_name):
     with open(File_name, "r+") as f:
         readlines = f.readlines()
@@ -99,7 +99,7 @@ with open(path + 'fio.conf', "r+") as f:
         f.close()
 
 
-os.system("bash fio_test.sh %s %s" %(FILENAME, RUNTIME))
+#os.system("bash fio_test.sh %s %s" %(FILENAME, RUNTIME))
 
 # 新建一个工作薄
 bw = openpyxl.Workbook()

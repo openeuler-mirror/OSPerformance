@@ -30,6 +30,14 @@ else
 	git clone https://github.com/axboe/fio
 fi
 
+cd fio || exit 1
+sed -i '10 i\#include <sys/sysmacros.h>' diskutil.c
+sed -i '8 i\#include <sys/sysmacros.h>' blktrace.c
+
+./configure
+make && make install
+
+
 FILENAME=$1
 RUNTIME=$2
 
