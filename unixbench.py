@@ -12,7 +12,7 @@ import socket
 path = './'
 
 print(os.getcwd())
-os.system('sh unixbench.sh')
+os.system('bash unixbench.sh')
 
 
 #"""
