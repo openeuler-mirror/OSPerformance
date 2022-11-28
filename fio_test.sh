@@ -15,12 +15,19 @@
 # 第二个参数为运行时间可以为数字
 DIRPATH=`pwd`
 cd $DIRPATH/src/ || exit 1
-if ls ./fio
+#if ls ./fio
+#then
+#	cd ./fio
+#else
+#    echo "fio软件包不存在，请检查是否被删除"
+#    sleep 2
+#fi
+if [-d "fio"]
 then
-	cd ./fio
+	rm -rf fio
+	git clone https://github.com/axboe/fio
 else
-    echo "fio软件包不存在，请检查是否被删除"
-    sleep 2
+	git clone https://github.com/axboe/fio
 fi
 
 FILENAME=$1
