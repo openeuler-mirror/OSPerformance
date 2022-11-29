@@ -73,10 +73,10 @@ echo "cpu核数为：$cpus"
 b=1024
 if [ "$L3unit" = "K" ]
 then
-    size=`expr $cpus \* $L3 / $b \* 4 / 8 `
+    size=`expr $cpus \* $L3 \* 4 / 8 `
     echo "数组长度：$size "
 else [ "$L3unit" = "MiB" ]
-    size=`expr $cpus \* $L3 \* 4 / 8 `
+    size=`expr $cpus \* $L3 \* $b \* 4 / 8 `
     echo "数组长度：$size "
 fi
 

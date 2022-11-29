@@ -67,3 +67,6 @@ worksheet.write('C11', traid2)
 
 workbook.close()
 
+pwd=os.getcwd()
+report_path= pwd +'/report/stream'
+print("测试完成，请在%s目录下查看结果" %report_path)
