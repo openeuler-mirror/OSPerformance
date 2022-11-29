@@ -20,12 +20,15 @@ echo `pwd`
 cd src/
 
 #判断stream目录是否存在，如果存在就删除并且打印目录被删除
-#if [ -d "stream" ]
-#then
-#    cd stream
-#else
-#    echo "请检查当前目录是否存在stream源码包"
-#fi
+if [ -d "STREAM" ]
+then
+    rm -rf  STREAM
+    unzip STREAM-master.zip
+else
+    echo "请检查当前目录是否存在stream源码包"
+    unzip STREAM-master.zip
+fi
+mv STREAM-master STREAM
 #if ls src/STREAM exit 0
 #then
 #	rm -rf STREAM
@@ -34,7 +37,7 @@ cd src/
 #       	git clone https://github.com/jeffhammond/STREAM.git
 #fi
 
-cd stream
+cd STREAM
 echo "chdir retrun is $?"
 #取出cpu核数的值
 if [ -x "$(command -v yum)" ]; 
