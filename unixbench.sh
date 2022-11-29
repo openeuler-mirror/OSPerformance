@@ -70,5 +70,5 @@ cp  results/* ../../report/unixbench_results
 cd ../../ || exit 1
 rm -rf report/unixbench_results/*.html
 rm -rf report/unixbench_results/*.log
-#python3 unixbench.py
+python3 unixbench1.py
 echo "complete!"
