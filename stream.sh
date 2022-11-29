@@ -20,22 +20,21 @@ echo `pwd`
 cd src/
 
 #判断stream目录是否存在，如果存在就删除并且打印目录被删除
-#if [ -d "STREAM" ]
+#if [ -d "stream" ]
 #then
-#    cd STREAM
+#    cd stream
 #else
-#    echo "请检查当前目录是否存在STREAM源码包"
+#    echo "请检查当前目录是否存在stream源码包"
 #fi
-if ls src/STREAM exit 0
-then
-	rm -rf STREAM
-        git clone https://github.com/jeffhammond/STREAM.git
+#if ls src/STREAM exit 0
+#then
+#	rm -rf STREAM
+#        git clone https://github.com/jeffhammond/STREAM.git
+#else
+#       	git clone https://github.com/jeffhammond/STREAM.git
+#fi
 
-else
-       	git clone https://github.com/jeffhammond/STREAM.git
-fi
-
-cd STREAM
+cd stream
 echo "chdir retrun is $?"
 #取出cpu核数的值
 if [ -x "$(command -v yum)" ]; 
@@ -95,7 +94,8 @@ else
     sleep 2
 fi
 mkdir ../../report/stream_results/
-
+rm -rf ./stream
+rm -rf stream_mu
 #make
 gcc -O2 -mcmodel=large stream.c -o stream
 echo "-o stream return is $?"
