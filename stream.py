@@ -24,18 +24,18 @@ def get_value(file, keyword):
     return value
 
 
-if os.path.exists(path + 'report/' + 'stream.xlsx'):
-    os.system('rm -rf ./report/stream.xlsx')
+if os.path.exists(path + 'report/stream/' + 'stream.xlsx'):
+    os.system('rm -rf ./report/stream/stream.xlsx')
 
-workbook = xlsxwriter.Workbook(path+'report/'+'stream.xlsx')  # 新建excel表
+workbook = xlsxwriter.Workbook(path+'report/stream/'+'stream.xlsx')  # 新建excel表
 
 worksheet = workbook.add_worksheet('stream')  # 新建sheet（sheet的名称为"sheet1"
 headings = ['测试项', '测试说明', '测试数据']  # 设置表头
 test_name = ['Copy', 'Scale', 'Add', 'Triad']
 explain = ['静态内存读写带宽', '静态内存读写乘法操作带宽', '静态内存读写加法操作带宽', '静态内存读写混合操作带宽']
 
-file1 = path + 'report/stream_results/'+'单线程.txt'
-file2 = path + 'report/stream_results/'+'满线程.txt'
+file1 = path + 'report/stream/'+'单线程.txt'
+file2 = path + 'report/stream/'+'满线程.txt'
 
 copy1 = get_value(file1, 'Copy')
 print(copy1)

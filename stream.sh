@@ -29,6 +29,7 @@ else
     unzip STREAM-master.zip
 fi
 mv STREAM-master STREAM
+echo "mv return is $?"
 #if ls src/STREAM exit 0
 #then
 #	rm -rf STREAM
@@ -87,30 +88,31 @@ else
 	echo "make the second times to test,no need to change the SIZE value."
 fi
 #stream性能执行的结果输入到上上级别目录的单线程.txt文件中，并打印结果
-if [ -d "../../report/stream_results" ] 
+if [ -d "../../report/stream" ] 
 then
-    echo "stream_results已经存在,即将帮你删除。"
+    echo "stream测试结果已经存在,即将帮你删除。"
     sleep 3
-    rm  -r ../../report/stream_results
+    rm  -r ../../report/stream
 else
     echo "stream_results不存在"
     sleep 2
 fi
-mkdir ../../report/stream_results/
-rm -rf ./stream
-rm -rf stream_mu
+mkdir ../../report/stream
+
+#rm -rf ./stream
+#rm -rf stream_mu
 #make
 gcc -O2 -mcmodel=large stream.c -o stream
 echo "-o stream return is $?"
 gcc -O2 -mcmodel=large -fopenmp  stream.c -o stream_mu
 echo "-o stream_mu return is $?"
 
-./stream > ../../report/stream_results/单线程.txt
+./stream > ../../report/stream/单线程.txt
 echo "single_test return is $?"
 echo "结果成功写入单线程.txt"
 
 #stream性能执行的结果输入到上层目录的满线程.txt文件中，并打印结果
-./stream_mu > ../../report/stream_results/满线程.txt
+./stream_mu > ../../report/stream/满线程.txt
 echo "test_full return is $?"
 echo "结果成功写入满线程.txt"
 
