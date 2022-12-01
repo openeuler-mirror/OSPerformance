@@ -21,8 +21,8 @@ import time
 
 path = './'
 print(os.getcwd())
-os.system("bash fio_compile.sh %s %s" %(FILENAME, RUNTIME))
-#os.system('sh fio_test.sh')
+os.system('sh fio_compile1.sh')
+#os.system('sh fio_test1.sh')
 def get_file_bw_value(File_name):
     with open(File_name, "r+") as f:
         readlines = f.readlines()
@@ -77,13 +77,14 @@ def write_bw_excel(dict, row_1):
     ws.cell(row=row_1, column=2, value=dict['explain'])
     bw_value = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()) + "  "  + str(dict['bw_value'])
     ws.cell(row=row_1, column=3, value=bw_value)
-    ws.cell(row=row_1, column=3, value=dict['bw_value'])
+    #ws.cell(row=row_1, column=3, value=dict['bw_value'])
 
 def write_iops_excel(dict, row_1):
     ws.cell(row=row_1, column=1, value=dict['name'])
     ws.cell(row=row_1, column=2, value=dict['explain'])
     ipos_value = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()) + "  "  + str(dict['iops_value'])
     ws.cell(row=row_1, column=3, value=ipos_value)
+   # ws.cell(row=row_1, column=3, value=dict['ipos_value'])
 
 with open(path + 'fio.conf', "r+") as f:
         fio_conf_readlines = f.readlines()
@@ -99,7 +100,7 @@ with open(path + 'fio.conf', "r+") as f:
         f.close()
 
 
-#os.system("bash fio_test.sh %s %s" %(FILENAME, RUNTIME))
+os.system("bash fio_test1.sh %s %s" %(FILENAME, RUNTIME))
 
 # 新建一个工作薄
 bw = openpyxl.Workbook()
@@ -422,4 +423,4 @@ fio_randrw_mixread_70_1M_iops = {'name':'读占70%随机混合读写模式 iops 
 fio_randrw_mixread_70_1M_iops['iops_value'] = get_file_iops_value(fio_randrw_mixread_70_1M_iops['file_name'])
 row += 1
 write_iops_excel(fio_randrw_mixread_70_1M_iops, row)
-bw.save('fio.xlsx')
+bw.save('./report/fio/fio.xlsx')

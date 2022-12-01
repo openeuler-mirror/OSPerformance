@@ -17,9 +17,9 @@ Operating Systems performance Tool.
 
 1.  stream:执行python3 stream.py可运行，测试结果存放在report/stream目录下。
 2.  fio，请确保运行环境中至少有2块磁盘，磁盘太小比如5G测试不了，（尝试过80G可测），修改fio.conf文件中修改指定硬盘名称，指定的空分区，不可使用系统盘，会使系统崩溃，执行 python3 fio.py进行测试，结果存放在热report/fio目录下。 
-3.  netperf：准备两个机器，一台作为客户端，一台服务端，保证两个机器之间可以ping通（此处无直连物理机可实用一台机器上的两台虚拟机进行测试，这种方式可能网络不是很稳定，数据波动较大）。采用网线直连的方式进行测试。把OSPformance分别放在服务端和客户端上，在服务端中执行sh netperf_server.sh,在客户端中修改netperf.conf中的SERVERIP为服务端的IP地址，其中的RUMTIME可按照自己需求进行修改（单位：秒）。在客户端执行python3 netperf.py即可以进行测试。
+3. netperf:1.准备两台机器，一台作为server（测试机），一台作为client（被测机),两台机器均安装netperf，且防火墙关闭两台机器用网线直连，并手动设置ip，且网络互通（即：两台机器分别ping通对方的ip地址)（此处无直连物理机可实用一台机器上的两台虚拟机进行测试，这种方式可能网络不是很稳定，数据波动较大）。把OSPformance分别放在服务端和客户端上，在服务端中执行sh netperf_server.sh,在客户端中修改netperf.conf中的SERVERIP为服务端的IP地址，其中的RUMTIME可按照自己需求进行修改（单位：秒）。在客户端执行python3 netperf.py即可以进行测试。
 4.unixbench：执行sh unixbench.sh (此处由于实用.py文件调用测试中途会失败，改用.sh调用则不会出现中断）
-5.lmbench:测试目前有问题
+5.lmbench:安装libtirpc   执行python3 lmbench.py
 
 #### 参与贡献
 

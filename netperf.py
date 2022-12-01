@@ -62,7 +62,7 @@ with open(path + 'netperf.conf', "r+") as f:
 # os.system("sshpass -p '%s' scp src/fio-2.1.10.tar.gz  root@%s:/root/src" %(NETPERF_SERVER_PASSPW, SERVERIP))
 # os.system("sshpass -p '%s' ssh root@%s 'bash -s' < netperf_server.sh" %(NETPERF_SERVER_PASSPW, SERVERIP))
 
-os.system("sh netperf_client1.sh %s %s" %(SERVERIP, RUNTIME))
+os.system("sh netperf_client.sh %s %s" %(SERVERIP, RUNTIME))
 
 # 新建一个工作薄
 bw = openpyxl.Workbook()
@@ -77,7 +77,7 @@ TCP_STREAM = {'name':'TCP 批量传输 (MB/s)',
         'explain':'TCP 批量数据传输的吞吐量', 
         'keyword':'Throughput',
         'downrow':3,
-        'file_name':path + 'report/netperf_results/TCP_STREAM.txt'
+        'file_name':path + 'report/netperf/TCP_STREAM.txt'
         }   
 TCP_STREAM['netperf_value'] = get_file_netperf_value(TCP_STREAM['file_name'],TCP_STREAM['keyword'], TCP_STREAM['downrow'])
 row = 2
@@ -87,7 +87,7 @@ UDP_STREAM = {'name':'UDP 批量传输 (MB/s)',
         'explain':'UDP 批量数据传输的吞吐量',
         'keyword':'Throughput',
         'downrow':3,
-        'file_name':path + 'report/netperf_results/UDP_STREAM.txt'
+        'file_name':path + 'report/netperf/UDP_STREAM.txt'
         }
 UDP_STREAM['netperf_value'] = get_file_netperf_value(UDP_STREAM['file_name'], UDP_STREAM['keyword'], UDP_STREAM['downrow'])
 row += 1
@@ -97,7 +97,7 @@ TCP_RR = {'name':'TCP 请求响应速度 (次/s)',
         'explain':'TCP 长连接请求应答的平均交易率',
         'keyword':'Trans.',
         'downrow':4,
-        'file_name':path + 'report/netperf_results/TCP_RR.txt'
+        'file_name':path + 'report/netperf/TCP_RR.txt'
         }
 TCP_RR['netperf_value'] = get_file_netperf_value(TCP_RR['file_name'], TCP_RR['keyword'], TCP_RR['downrow'])
 row += 1
@@ -107,7 +107,7 @@ TCP_CRR = {'name':'HTTP应用测试 (次/s)',
         'explain':'TCP 短连接请求应答的平均交易率',
         'keyword':'Trans.',
         'downrow':4,
-        'file_name':path + 'report/netperf_results/TCP_CRR.txt'
+        'file_name':path + 'report/netperf/TCP_CRR.txt'
         }
 TCP_CRR['netperf_value'] = get_file_netperf_value(TCP_CRR['file_name'], TCP_CRR['keyword'], TCP_CRR['downrow'])
 row += 1
@@ -118,7 +118,7 @@ UDP_RR = {'name':'UDP 请求响应速度 (次/s)',
         'explain':'UDP 分组进行请求应答的平均交易率',
         'keyword':'Trans.',
         'downrow':4,
-        'file_name':path + 'report/netperf_results/UDP_RR.txt'
+        'file_name':path + 'report/netperf/UDP_RR.txt'
         }
 UDP_RR['netperf_value'] = get_file_netperf_value(UDP_RR['file_name'], UDP_RR['keyword'], UDP_RR['downrow'])
 row += 1
@@ -128,7 +128,7 @@ omni = {'name':'网络响应时间 (μs)',
         'explain':'测试服务端和客户端的平均时延',
         'keyword':'Mean',
         'downrow':4,
-        'file_name':path + 'report/netperf_results/omni.txt'
+        'file_name':path + 'report/netperf/omni.txt'
         }
 omni['netperf_value'] = get_file_netperf_value(omni['file_name'], omni['keyword'], omni['downrow'])
 row += 1
@@ -136,4 +136,4 @@ write_netperf_excel(omni, row)
 
 
 # # 保存表格
-bw.save(path+'report/netperf.xlsx')
+bw.save(path+'report/netperf/netperf.xlsx')
