@@ -31,6 +31,11 @@ else
     sleep 2
 fi
 
+unzip netperf-master.zip
+mv netperf-master netperf
+
+cd netperf || exit 1
+
 arch=`uname -m`
 if [ $arch == "aarch64" ]
 then
