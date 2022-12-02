@@ -42,6 +42,8 @@ then
 	./configure
 else
 	echo "不知道的架构，请检查架构是否正确"
+	sh autogen.sh
+	./configure
 fi
 make && make install
 systemctl stop firewalld.service

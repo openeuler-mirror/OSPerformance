@@ -44,6 +44,8 @@ then
 	sh autogen.sh
 	./configure
 else
+        sh autogen.sh
+	./configure
 	echo "不知道的架构，请检查架构是否正确"
 fi
 make && make install
