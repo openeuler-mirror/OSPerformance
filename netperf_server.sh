@@ -25,7 +25,7 @@ cd `pwd`/src/ || exit 1
 
 if [ -d  "netperf" ]
 then
-    cd rm -rf netperf
+    rm -rf netperf
 else
     echo "netperf 软件包不存在，请检查是否被删除"
     sleep 2
