@@ -21,7 +21,7 @@ import time
 
 path = './'
 print(os.getcwd())
-os.system('sh fio_compile1.sh')
+os.system('sh fio_compile.sh')
 #os.system('sh fio_test1.sh')
 def get_file_bw_value(File_name):
     with open(File_name, "r+") as f:
@@ -100,7 +100,7 @@ with open(path + 'fio.conf', "r+") as f:
         f.close()
 
 
-os.system("bash fio_test1.sh %s %s" %(FILENAME, RUNTIME))
+os.system("bash fio_test.sh %s %s" %(FILENAME, RUNTIME))
 
 # 新建一个工作薄
 bw = openpyxl.Workbook()
@@ -116,7 +116,7 @@ ws.cell(row=1, column=1, value=title)
 # 第一个参数为测试的硬盘比如/dev/sda
 # 第二个参数为运行时间可以为数字
 row = 1
-os.system("bash fio_test1.sh %s %s" %(FILENAME, RUNTIME))
+#os.system("bash fio_test1.sh %s %s" %(FILENAME, RUNTIME))
 fio_write_4k_bw = {'name':'100%顺序写模式 bw (KB/s)\n', 
         'explain':'顺序写磁盘的吞吐量\n', 
         'file_name':path + 'report/fio_result/4k/write_4k.txt'
@@ -215,9 +215,8 @@ fio_randrw_mixread_70_4k_iops['iops_value'] = get_file_iops_value(fio_randrw_mix
 row += 1
 write_iops_excel(fio_randrw_mixread_70_4k_iops, row)
 
-bw.save('fio.xlsx')
+#bw.save('fio.xlsx')
 
-#os.system("bash fio_test1.sh %s %s" %(FILENAME, RUNTIME))
 row += 1
 title1 = "128k"
 # 在表格的下一行插入title为128k
@@ -319,10 +318,9 @@ fio_randrw_mixread_70_128k_iops = {'name':'读占70%随机混合读写模式 iop
 fio_randrw_mixread_70_128k_iops['iops_value'] = get_file_iops_value(fio_randrw_mixread_70_128k_iops['file_name'])
 row += 1
 write_iops_excel(fio_randrw_mixread_70_128k_iops, row)
-bw.save('fio.xlsx')
+#bw.save('fio.xlsx')
 print("测试fio 128k 数据块")
 
-#os.system("bash fio_test1.sh %s %s" %(FILENAME, RUNTIME))
 title2 = "1M"
 row += 1
 row_1M = row
