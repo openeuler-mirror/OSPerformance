@@ -62,5 +62,5 @@ then
        sudo ufw disable
 fi
 make && make install
-./netserver
+netserver
 
