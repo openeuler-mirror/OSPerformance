@@ -48,8 +48,20 @@ else
 	./configure
 	echo "不知道的架构，请检查架构是否正确"
 fi
+
+if [ -x "$(command -v yum)" ];
+then
+       echo "r system"
+       systemctl stop firewall.service
+elif [ -x "$(command -v apt-get)" ];
+
+then
+       echo "d system"
+       sudo ufw disable
+fi
+
 make && make install
-systemctl stop firewalld.service
+
 
 Serverip=$1
 runtime=$2

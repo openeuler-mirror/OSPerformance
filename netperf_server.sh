@@ -45,7 +45,17 @@ else
 	sh autogen.sh
 	./configure
 fi
+
+if [ -x "$(command -v yum)" ];
+then
+       echo "r system"
+       systemctl stop firewall.service
+elif [ -x "$(command -v apt-get)" ];
+
+then
+       echo "d system"
+       sudo ufw disable
+fi
 make && make install
-systemctl stop firewalld.service
 netserver
 
