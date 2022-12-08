@@ -11,12 +11,20 @@
 
 #进入测试工具目录
 cd src || exit 1
+if [ -d "byte-unixbench-master" ];then
+	if [ -d "UnixBench" ];then
+		rm -rf UnixBench
+	fi
+else
+	unzip master.zip 
+fi
+cp -r byte-unixbench-master/UnixBench ./ 
 #echo "cd src return is $?" 
 chmod -R 777 UnixBench
 #进入测试套
 cd UnixBench || exit 1
-rm -rf results/*
-make clean
+#rm -rf results/*
+#make clean
 
 #取出cpu核数的值
 if [ -x "$(command -v yum)" ];
@@ -34,17 +42,17 @@ else
         cpus=`sudo lscpu|grep -w "CPU(s)"|head -1|awk '{print$2}'` || exit 1
 fi
 
-#sed -i 109s/16/$cpus/g  Run
-#echo "change_size1 return is $?"
+sed -i 109s/16/$cpus/g  Run
+echo "change_size1 return is $?"
 chmod -R 777 Run
 
 echo "正在进行满核测试。。。"
 if ./Run -c 1 -c  $cpus
 #if ./Run -c 1 -c 2
 then
-     echo "满核测试完成"
+     echo "单核测试和满核测试完成"
 else
-     echo "满核测试失败"  || exit 1
+     echo "测试失败"  || exit 1
 fi
 
 
@@ -57,18 +65,18 @@ else
 fi
 
 
-if [ -a ../../report/unixbench_results ]
+if [ -d ../../report/unixbench ];
 then
     echo "Unixbench 旧的测试结果存在，即将删除"
-    rm -rf ../../report/unixbench_results
+    rm -rf ../../report/unixbench
 fi
 
-mkdir ../../report/unixbench_results
+mkdir ../../report/unixbench
 echo "正在将测试结果复制到report"
 #复制测试结果到框架统一存放
-cp  results/* ../../report/unixbench_results
+cp  results/* ../../report/unixbench
 cd ../../ || exit 1
-rm -rf report/unixbench_results/*.html
-rm -rf report/unixbench_results/*.log
-python3 unixbench1.py
+#rm -rf report/unixbench_results/*.html
+#rm -rf report/unixbench_results/*.log
+#python3 unixbench1.py
 echo "complete!"
