@@ -28,6 +28,7 @@ char SCCSid[] = "@(#) @(#)syscall.c:3.3 -- 5/15/91 19:30:21";
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/syscall.h>
 #include "timeit.c"
 
 unsigned long iter;
@@ -65,7 +66,7 @@ char	*argv[];
         case 'm':
 	   while (1) {
 		close(dup(0));
-		getpid();
+		syscall(SYS_getpid);
 		getuid();
 		umask(022);
 		iter++;
@@ -79,7 +80,7 @@ char	*argv[];
            /* NOTREACHED */
         case 'g':
            while (1) {
-                getpid();
+                syscall(SYS_getpid);
                 iter++;
            }
            /* NOTREACHED */
@@ -90,7 +91,7 @@ char	*argv[];
                     fprintf(stderr,"%s: fork failed\n", argv[0]);
                     exit(1);
                 } else if (pid == 0) {
-                    execl("/bin/true", (char *) 0);
+                    execl("/bin/true", "/bin/true", (char *) 0);
                     fprintf(stderr,"%s: exec /bin/true failed\n", argv[0]);
                     exit(1);
                 } else {

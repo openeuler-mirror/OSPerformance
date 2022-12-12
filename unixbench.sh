@@ -18,7 +18,7 @@ if [ -d "byte-unixbench-master" ];then
 else
 	unzip master.zip 
 fi
-cp -r byte-unixbench-master/UnixBench ./ 
+cp -r  byte-unixbench-master/UnixBench ./ 
 #echo "cd src return is $?" 
 chmod -R 777 UnixBench
 #进入测试套
@@ -65,7 +65,7 @@ else
 fi
 
 
-if [ -d ../../report/unixbench ];
+if [ -a ../../report/unixbench ]
 then
     echo "Unixbench 旧的测试结果存在，即将删除"
     rm -rf ../../report/unixbench
@@ -76,7 +76,7 @@ echo "正在将测试结果复制到report"
 #复制测试结果到框架统一存放
 cp  results/* ../../report/unixbench
 cd ../../ || exit 1
-#rm -rf report/unixbench_results/*.html
-#rm -rf report/unixbench_results/*.log
+rm -rf report/unixbench_results/*.html
+rm -rf report/unixbench_results/*.log
 #python3 unixbench1.py
 echo "complete!"
