@@ -65,7 +65,7 @@ else
 fi
 
 
-if [ -a ../../report/unixbench ]
+if [ -d ../../report/unixbench ]
 then
     echo "Unixbench 旧的测试结果存在，即将删除"
     rm -rf ../../report/unixbench
