@@ -12,34 +12,30 @@
 #Source code acquisition and decompression
 #Switch to the source package directory
 cd `pwd`/src/ || exit 1
-if [ -d "lmbench" ];then
-	echo "已经存在lmbench，即将删除重新解压"
-	rm -rf lmbench
-	echo "delete lmbench return is $?"
-else
-    echo "不存在，即将解压lmbench"
+if ls ./lmbench-3.0-a9-1
+then
+    echo "lmbench已经被解压,即将帮你删除，然后重新解压"
     sleep 3
+    rm  -r ./lmbench-3.0-a9-1
+else
+    echo "lmbench软件包不存在，请检查是否被删除"
+    sleep 2
 fi
 
 
-#unzip the lmbench source package
-unzip lmbench-master.zip 
+#tar the lmbench source package
+tar -xvf lmbench-3.0-a9-1.tar.bz2 
 
-mv lmbench-master lmbench
 #Give permission
-chmod -R 777 lmbench
+chmod -R 777 lmbench-3.0-a9-1
 
 echo "lmbench source code package decompressed successfully"
 
 #Start an automated test run
-cd lmbench || exit 2
+cd lmbench-3.0-a9-1 || exit 2
 echo "Switch successfully"
-if [ -x "$(command -v apt-get)" ];
-then
-	command="make results"
-else
-	command="make results LDFLAGS=-ltirpc"
-fi
+command="make results"
+
 #$ent_a variable is the enter key, custom made.
 ent_a="\\n"
 
@@ -104,7 +100,7 @@ interact
 "
 
 #Get data file
-make see > results/summary.out
+make see
 data=`pwd`/results/summary.out
 if [ ! -f "$data" ];
 	then
@@ -114,13 +110,7 @@ else
 	echo "------------lmbench runs successfully-------"
 fi
 
-if [ -d "../../report/lmbench" ]; then
-	rm -rf ../../report/lmbench
-fi
-mkdir ../../report/lmbench
-
 #Copy the running results to the specified directory report
-cp -r `pwd`/results/summary.out ../../report/lmbench
+cp -r `pwd`/results/summary.out ../../report/
 
 echo 3 > /proc/sys/vm/drop_caches
-cd ../../ 
