@@ -119,7 +119,7 @@ row = 1
 #os.system("bash fio_test1.sh %s %s" %(FILENAME, RUNTIME))
 fio_write_4k_bw = {'name':'100%顺序写模式 bw (KB/s)\n', 
         'explain':'顺序写磁盘的吞吐量\n', 
-        'file_name':path + 'report/fio_result/4k/write_4k.txt'
+        'file_name':path + 'report/fio/4k/write_4k.txt'
         }   
 
 fio_write_4k_bw['bw_value'] = get_file_bw_value(fio_write_4k_bw['file_name'])
@@ -129,7 +129,7 @@ write_bw_excel(fio_write_4k_bw, row)
 
 fio_write_4k_iops = {'name':'100%顺序写模式 iops (次)\n',
         'explain':'顺序写磁盘的每秒写次数\n',
-        'file_name':path + 'report/fio_result/4k/write_4k.txt'
+        'file_name':path + 'report/fio/4k/write_4k.txt'
         }
 fio_write_4k_iops['iops_value'] = get_file_iops_value(fio_write_4k_iops['file_name'])
 #print("aaaaaaaaaaaaaa %d \n" %(fio_write_4k_iops['ivalue']))
@@ -138,7 +138,7 @@ write_iops_excel(fio_write_4k_iops, row)
 
 fio_read_4k_bw = {'name':'100%顺序读模式 bw (KB/s)\n', 
         'explain':'顺序读磁盘的吞吐量\n', 
-        'file_name':path + 'report/fio_result/4k/read_4k.txt'
+        'file_name':path + 'report/fio/4k/read_4k.txt'
         }
 fio_read_4k_bw['bw_value'] = get_file_bw_value(fio_read_4k_bw['file_name'])
 #print("bbbbbbbbbbbb %d \n" %(fio_read_4k_bw['bw_value']))
@@ -147,21 +147,21 @@ write_bw_excel(fio_read_4k_bw, row)
 
 fio_read_4k_iops = {'name':'100%顺序读模式 iops (次)\n',
         'explain':'顺序读磁盘的每秒读次数\n',
-        'file_name':path + 'report/fio_result/4k/read_4k.txt'
+        'file_name':path + 'report/fio/4k/read_4k.txt'
         }
 fio_read_4k_iops['iops_value'] = get_file_iops_value(fio_read_4k_iops['file_name'])
 row += 1
 write_iops_excel(fio_read_4k_iops, row)
 fio_randwrite_4k_bw = {'name':'100%随机写模式 bw (KB/s)\n',
         'explain':'随机写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/4k/randwrite_4k.txt'
+        'file_name':path + 'report/fio/4k/randwrite_4k.txt'
         }
 fio_randwrite_4k_bw['bw_value'] = get_file_bw_value(fio_randwrite_4k_bw['file_name'])
 row += 1
 write_bw_excel(fio_randwrite_4k_bw, row)
 fio_randwrite_4k_iops = {'name':'100%随机写模式 iops (次)\n',
         'explain':'随机写磁盘的每秒写次数\n',
-        'file_name':path + 'report/fio_result/4k/randwrite_4k.txt'
+        'file_name':path + 'report/fio/4k/randwrite_4k.txt'
         }
 fio_randwrite_4k_iops['iops_value'] = get_file_iops_value(fio_randwrite_4k_iops['file_name'])
 row += 1
@@ -169,7 +169,7 @@ write_iops_excel(fio_randwrite_4k_iops, row)
 
 fio_randread_4k_bw = {'name':'100%随机读模式 bw (KB/s)\n',
         'explain':'随机读磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/4k/randread_4k.txt'
+        'file_name':path + 'report/fio/4k/randread_4k.txt'
         }
 fio_randread_4k_bw['bw_value'] = get_file_bw_value(fio_randread_4k_bw['file_name'])
 row += 1
@@ -177,7 +177,7 @@ write_bw_excel(fio_randread_4k_bw, row)
 
 fio_randread_4k_iops = {'name':'100%随机读模式 iops (次)\n',
         'explain':'随机读磁盘的每秒读次数\n',
-        'file_name':path + 'report/fio_result/4k/randread_4k.txt'
+        'file_name':path + 'report/fio/4k/randread_4k.txt'
         }
 fio_randread_4k_iops['iops_value'] = get_file_iops_value(fio_randread_4k_iops['file_name'])
 row += 1
@@ -185,7 +185,7 @@ write_iops_excel(fio_randread_4k_iops, row)
 
 fio_randrw_mixwrite_70_4k_bw = {'name':'写占70%随机混合读写模式 bw (KB/s)\n',
         'explain':'随机混合读写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/4k/randrw_mixwrite_70_4k.txt'
+        'file_name':path + 'report/fio/4k/randrw_mixwrite_70_4k.txt'
         }
 fio_randrw_mixwrite_70_4k_bw['bw_value'] = get_file_bw_value(fio_randrw_mixwrite_70_4k_bw['file_name'])
 row += 1
@@ -193,7 +193,7 @@ write_bw_excel(fio_randrw_mixwrite_70_4k_bw, row)
 
 fio_randrw_mixwrite_70_4k_iops = {'name':'写占70%随机混合读写模式 iops (次)\n',
         'explain':'随机混合读写磁盘的每秒读写次数\n',
-        'file_name':path + 'report/fio_result/4k/randrw_mixwrite_70_4k.txt'
+        'file_name':path + 'report/fio/4k/randrw_mixwrite_70_4k.txt'
         }
 fio_randrw_mixwrite_70_4k_iops['iops_value'] = get_file_iops_value(fio_randrw_mixwrite_70_4k_iops['file_name'])
 row += 1
@@ -201,7 +201,7 @@ write_iops_excel(fio_randrw_mixwrite_70_4k_iops, row)
 
 fio_randrw_mixread_70_4k_bw = {'name':'读占70%随机混合读写模式 bw (KB/s)\n',
         'explain':'随机混合读写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/4k/randrw_mixread_70_4k.txt'
+        'file_name':path + 'report/fio/4k/randrw_mixread_70_4k.txt'
         }
 fio_randrw_mixread_70_4k_bw['bw_value'] = get_file_bw_value(fio_randrw_mixread_70_4k_bw['file_name'])
 row += 1
@@ -209,13 +209,13 @@ write_bw_excel(fio_randrw_mixread_70_4k_bw, row)
 
 fio_randrw_mixread_70_4k_iops = {'name':'读占70%随机混合读写模式 iops (次)\n',
         'explain':'随机混合读写磁盘的每秒读写次数\n',
-        'file_name':path + 'report/fio_result/4k/randrw_mixread_70_4k.txt'
+        'file_name':path + 'report/fio/4k/randrw_mixread_70_4k.txt'
         }
 fio_randrw_mixread_70_4k_iops['iops_value'] = get_file_iops_value(fio_randrw_mixread_70_4k_iops['file_name'])
 row += 1
 write_iops_excel(fio_randrw_mixread_70_4k_iops, row)
 
-#bw.save('fio.xlsx')
+bw.save('./report/fio/fio.xlsx')
 
 row += 1
 title1 = "128k"
@@ -225,7 +225,7 @@ ws.cell(row=row_128k, column=1, value=title1)
 
 fio_write_128k_bw = {'name':'100%顺序写模式 bw (KB/s)\n', 
         'explain':'顺序写磁盘的吞吐量\n', 
-        'file_name':path + 'report/fio_result/128k/write_128k.txt'
+        'file_name':path + 'report/fio/128k/write_128k.txt'
         }   
 fio_write_128k_bw['bw_value'] = get_file_bw_value(fio_write_128k_bw['file_name'])
 row += 1
@@ -233,7 +233,7 @@ write_bw_excel(fio_write_128k_bw, row)
 
 fio_write_128k_iops = {'name':'100%顺序写模式 iops (次)\n',
         'explain':'顺序写磁盘的每秒写次数\n',
-        'file_name':path + 'report/fio_result/128k/write_128k.txt'
+        'file_name':path + 'report/fio/128k/write_128k.txt'
         }
 fio_write_128k_iops['iops_value'] = get_file_iops_value(fio_write_128k_iops['file_name'])
 row += 1
@@ -241,7 +241,7 @@ write_iops_excel(fio_write_128k_iops, row)
 
 fio_read_128k_bw = {'name':'100%顺序读模式 bw (KB/s)\n', 
         'explain':'顺序读磁盘的吞吐量\n', 
-        'file_name':path + 'report/fio_result/128k/read_128k.txt'
+        'file_name':path + 'report/fio/128k/read_128k.txt'
         }
 fio_read_128k_bw['bw_value'] = get_file_bw_value(fio_read_128k_bw['file_name'])
 row += 1
@@ -249,7 +249,7 @@ write_bw_excel(fio_read_128k_bw, row)
 
 fio_read_128k_iops = {'name':'100%顺序读模式 iops (次)\n',
         'explain':'顺序读磁盘的每秒读次数\n',
-        'file_name':path + 'report/fio_result/128k/read_128k.txt'
+        'file_name':path + 'report/fio/128k/read_128k.txt'
         }
 fio_read_128k_iops['iops_value'] = get_file_iops_value(fio_read_128k_iops['file_name'])
 row += 1
@@ -257,7 +257,7 @@ write_iops_excel(fio_read_128k_iops, row)
 
 fio_randwrite_128k_bw = {'name':'100%随机写模式 bw (KB/s)\n',
         'explain':'随机写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/128k/randwrite_128k.txt'
+        'file_name':path + 'report/fio/128k/randwrite_128k.txt'
         }
 fio_randwrite_128k_bw['bw_value'] = get_file_bw_value(fio_randwrite_128k_bw['file_name'])
 row += 1
@@ -265,7 +265,7 @@ write_bw_excel(fio_randwrite_128k_bw, row)
 
 fio_randwrite_128k_iops = {'name':'100%随机写模式 iops (次)\n',
         'explain':'随机写磁盘的每秒写次数\n',
-        'file_name':path + 'report/fio_result/128k/randwrite_128k.txt'
+        'file_name':path + 'report/fio/128k/randwrite_128k.txt'
         }
 fio_randwrite_128k_iops['iops_value'] = get_file_iops_value(fio_randwrite_128k_iops['file_name'])
 row += 1
@@ -273,7 +273,7 @@ write_iops_excel(fio_randwrite_128k_iops, row)
 
 fio_randread_128k_bw = {'name':'100%随机读模式 bw (KB/s)\n',
         'explain':'随机读磁i盘的吞吐量\n',
-        'file_name':path + '/report/fio_result/128k/randread_128k.txt'
+        'file_name':path + '/report/fio/128k/randread_128k.txt'
         }
 fio_randread_128k_bw['bw_value'] = get_file_bw_value(fio_randread_128k_bw['file_name'])
 row += 1
@@ -281,7 +281,7 @@ write_bw_excel(fio_randread_128k_bw, row)
 
 fio_randread_128k_iops = {'name':'100%随机读模式 iops (次)\n',
         'explain':'随机读磁盘的每秒读次数\n',
-        'file_name':path + 'report/fio_result/128k/randread_128k.txt'
+        'file_name':path + 'report/fio/128k/randread_128k.txt'
         }
 fio_randread_128k_iops['iops_value'] = get_file_iops_value(fio_randread_128k_iops['file_name'])
 row += 1
@@ -289,7 +289,7 @@ write_iops_excel(fio_randread_128k_iops, row)
 
 fio_randrw_mixwrite_70_128k_bw = {'name':'写占70%随机混合读写模式 bw (KB/s)\n',
         'explain':'随机混合读写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/128k/randrw_mixwrite_70_128k.txt'
+        'file_name':path + 'report/fio/128k/randrw_mixwrite_70_128k.txt'
         }
 fio_randrw_mixwrite_70_128k_bw['bw_value'] = get_file_bw_value(fio_randrw_mixwrite_70_128k_bw['file_name'])
 row += 1
@@ -297,7 +297,7 @@ write_bw_excel(fio_randrw_mixwrite_70_128k_bw, row)
 
 fio_randrw_mixwrite_70_128k_iops = {'name':'写占70%随机混合读写模式 iops (次)\n',
         'explain':'随机混合读写磁盘的每秒读写次数\n',
-        'file_name':path + 'report/fio_result/128k/randrw_mixwrite_70_128k.txt'
+        'file_name':path + 'report/fio/128k/randrw_mixwrite_70_128k.txt'
         }
 fio_randrw_mixwrite_70_128k_iops['iops_value'] = get_file_iops_value(fio_randrw_mixwrite_70_128k_iops['file_name'])
 row += 1
@@ -305,7 +305,7 @@ write_iops_excel(fio_randrw_mixwrite_70_128k_iops, row)
 
 fio_randrw_mixread_70_128k_bw = {'name':'读占70%随机混合读写模式 bw (KB/s)\n',
         'explain':'随机混合读写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/128k/randrw_mixread_70_128k.txt'
+        'file_name':path + 'report/fio/128k/randrw_mixread_70_128k.txt'
         }
 fio_randrw_mixread_70_128k_bw['bw_value'] = get_file_bw_value(fio_randrw_mixread_70_128k_bw['file_name'])
 row += 1
@@ -313,12 +313,12 @@ write_bw_excel(fio_randrw_mixread_70_128k_bw, row)
 
 fio_randrw_mixread_70_128k_iops = {'name':'读占70%随机混合读写模式 iops (次)\n',
         'explain':'随机混合读写磁盘的每秒读写次数\n',
-        'file_name':path + 'report/fio_result/128k/randrw_mixread_70_128k.txt'
+        'file_name':path + 'report/fio/128k/randrw_mixread_70_128k.txt'
         }
 fio_randrw_mixread_70_128k_iops['iops_value'] = get_file_iops_value(fio_randrw_mixread_70_128k_iops['file_name'])
 row += 1
 write_iops_excel(fio_randrw_mixread_70_128k_iops, row)
-#bw.save('fio.xlsx')
+bw.save('./report/fio/fio.xlsx')
 print("测试fio 128k 数据块")
 
 title2 = "1M"
@@ -328,7 +328,7 @@ row_1M = row
 ws.cell(row=row_1M, column=1, value=title2)
 fio_write_1M_bw = {'name':'100%顺序写模式 bw (KB/s)\n',
         'explain':'顺序写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/1M/write_1M.txt'
+        'file_name':path + 'report/fio/1M/write_1M.txt'
         }
 fio_write_1M_bw['bw_value'] = get_file_bw_value(fio_write_1M_bw['file_name'])
 row += 1
@@ -336,7 +336,7 @@ write_bw_excel(fio_write_1M_bw, row)
 
 fio_write_1M_iops = {'name':'100%顺序写模式 iops (次)\n',
         'explain':'顺序写磁盘的每秒写次数\n',
-        'file_name':path + 'report/fio_result/1M/write_1M.txt'
+        'file_name':path + 'report/fio/1M/write_1M.txt'
         }
 fio_write_1M_iops['iops_value'] = get_file_iops_value(fio_write_1M_iops['file_name'])
 row += 1
@@ -344,7 +344,7 @@ write_iops_excel(fio_write_1M_iops, row)
 
 fio_read_1M_bw = {'name':'100%顺序读模式 bw (KB/s)\n',
         'explain':'顺序读磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/1M/read_1M.txt'
+        'file_name':path + 'report/fio/1M/read_1M.txt'
         }
 fio_read_1M_bw['bw_value'] = get_file_bw_value(fio_read_1M_bw['file_name'])
 row += 1
@@ -352,7 +352,7 @@ write_bw_excel(fio_read_1M_bw, row)
 
 fio_read_1M_iops = {'name':'100%顺序读模式 iops (次)\n',
         'explain':'顺序读磁盘的每秒读次数\n',
-        'file_name':path + 'report/fio_result/1M/read_1M.txt'
+        'file_name':path + 'report/fio/1M/read_1M.txt'
         }
 fio_read_1M_iops['iops_value'] = get_file_iops_value(fio_read_1M_iops['file_name'])
 row += 1
@@ -360,7 +360,7 @@ write_iops_excel(fio_read_1M_iops, row)
 
 fio_randwrite_1M_bw = {'name':'100%随机写模式 bw (KB/s)\n',
         'explain':'随机写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/1M/randwrite_1M.txt'
+        'file_name':path + 'report/fio/1M/randwrite_1M.txt'
         }
 fio_randwrite_1M_bw['bw_value'] = get_file_bw_value(fio_randwrite_1M_bw['file_name'])
 row += 1
@@ -368,7 +368,7 @@ write_bw_excel(fio_randwrite_1M_bw, row)
 
 fio_randwrite_1M_iops = {'name':'100%随机写模式 iops (次)\n',
         'explain':'随机写磁盘的每秒写次数\n',
-        'file_name':path + 'report/fio_result/1M/randwrite_1M.txt'
+        'file_name':path + 'report/fio/1M/randwrite_1M.txt'
         }
 fio_randwrite_1M_iops['iops_value'] = get_file_iops_value(fio_randwrite_1M_iops['file_name'])
 row += 1
@@ -376,7 +376,7 @@ write_iops_excel(fio_randwrite_1M_iops, row)
 
 fio_randread_1M_bw = {'name':'100%随机读模式 bw (KB/s)\n',
         'explain':'随机读磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/1M/randread_1M.txt'
+        'file_name':path + 'report/fio/1M/randread_1M.txt'
         }
 fio_randread_1M_bw['bw_value'] = get_file_bw_value(fio_randread_1M_bw['file_name'])
 row += 1
@@ -384,7 +384,7 @@ write_bw_excel(fio_randread_1M_bw, row)
 
 fio_randread_1M_iops = {'name':'100%随机读模式 iops (次)\n',
         'explain':'随机读磁盘的每秒读次数\n',
-        'file_name':path + 'report/fio_result/1M/randread_1M.txt'
+        'file_name':path + 'report/fio/1M/randread_1M.txt'
         }
 fio_randread_1M_iops['iops_value'] = get_file_iops_value(fio_randread_1M_iops['file_name'])
 row += 1
@@ -392,7 +392,7 @@ write_iops_excel(fio_randread_1M_iops, row)
 
 fio_randrw_mixwrite_70_1M_bw = {'name':'写占70%随机混合读写模式 bw (KB/s)\n',
         'explain':'随机混合读写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/1M/randrw_mixwrite_70_1M.txt'
+        'file_name':path + 'report/fio/1M/randrw_mixwrite_70_1M.txt'
         }
 fio_randrw_mixwrite_70_1M_bw['bw_value'] = get_file_bw_value(fio_randrw_mixwrite_70_1M_bw['file_name'])
 row += 1
@@ -400,7 +400,7 @@ write_bw_excel(fio_randrw_mixwrite_70_1M_bw, row)
 
 fio_randrw_mixwrite_70_1M_iops = {'name':'写占70%随机混合读写模式 iops (次)\n',
         'explain':'随机混合读写磁盘的每秒读写次数\n',
-        'file_name':path + 'report/fio_result/1M/randrw_mixwrite_70_1M.txt'
+        'file_name':path + 'report/fio/1M/randrw_mixwrite_70_1M.txt'
         }
 fio_randrw_mixwrite_70_1M_iops['iops_value'] = get_file_iops_value(fio_randrw_mixwrite_70_1M_iops['file_name'])
 row += 1
@@ -408,7 +408,7 @@ write_iops_excel(fio_randrw_mixwrite_70_1M_iops, row)
 
 fio_randrw_mixread_70_1M_bw = {'name':'读占70%随机混合读写模式 bw (KB/s)\n',
         'explain':'随机混合读写磁盘的吞吐量\n',
-        'file_name':path + 'report/fio_result/1M/randrw_mixread_70_1M.txt'
+        'file_name':path + 'report/fio/1M/randrw_mixread_70_1M.txt'
         }
 fio_randrw_mixread_70_1M_bw['bw_value'] = get_file_bw_value(fio_randrw_mixread_70_1M_bw['file_name'])
 row += 1
@@ -416,7 +416,7 @@ write_bw_excel(fio_randrw_mixread_70_1M_bw, row)
 
 fio_randrw_mixread_70_1M_iops = {'name':'读占70%随机混合读写模式 iops (次)\n',
         'explain':'随机混合读写磁盘的每秒读写次数\n',
-        'file_name':path + 'report/fio_result/1M/randrw_mixread_70_1M.txt'
+        'file_name':path + 'report/fio/1M/randrw_mixread_70_1M.txt'
         }
 fio_randrw_mixread_70_1M_iops['iops_value'] = get_file_iops_value(fio_randrw_mixread_70_1M_iops['file_name'])
 row += 1

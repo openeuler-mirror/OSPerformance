@@ -1,0 +1,31 @@
+randwrite: (g=0): rw=randwrite, bs=(R) 128KiB-128KiB, (W) 128KiB-128KiB, (T) 128KiB-128KiB, ioengine=psync, iodepth=1
+...
+fio-3.33
+Starting 4 threads
+
+randwrite: (groupid=0, jobs=4): err= 0: pid=51768: Wed Dec 14 23:41:24 2022
+  write: IOPS=6492, BW=812MiB/s (851MB/s)(812MiB/1001msec); 0 zone resets
+    clat (usec): min=134, max=6099, avg=613.24, stdev=344.87
+     lat (usec): min=136, max=6101, avg=614.66, stdev=344.93
+    clat percentiles (usec):
+     |  1.00th=[  141],  5.00th=[  151], 10.00th=[  174], 20.00th=[  553],
+     | 30.00th=[  570], 40.00th=[  586], 50.00th=[  594], 60.00th=[  611],
+     | 70.00th=[  627], 80.00th=[  652], 90.00th=[  725], 95.00th=[ 1090],
+     | 99.00th=[ 2008], 99.50th=[ 2671], 99.90th=[ 4490], 99.95th=[ 4752],
+     | 99.99th=[ 6128]
+   bw (  KiB/s): min=803397, max=860087, per=100.00%, avg=831742.00, stdev=9104.05, samples=8
+   iops        : min= 6275, max= 6717, avg=6496.00, stdev=70.98, samples=8
+  lat (usec)   : 250=13.14%, 500=1.71%, 750=75.72%, 1000=1.57%
+  lat (msec)   : 2=6.83%, 4=0.92%, 10=0.11%
+  cpu          : usr=0.53%, sys=5.53%, ctx=12998, majf=0, minf=0
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,6499,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=812MiB/s (851MB/s), 812MiB/s-812MiB/s (851MB/s-851MB/s), io=812MiB (852MB), run=1001-1001msec
+
+Disk stats (read/write):
+  sdc: ios=54/6485, merge=0/0, ticks=7/942, in_queue=949, util=60.84%
