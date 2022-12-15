@@ -29,17 +29,17 @@ RUNTIME=$2
 #     #顺序读，顺序写，随机读写，顺序读写各运行一次
 mkdir -p ./fio_result/4k
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=write -direct=1 -buffered=0 -thread -size=5g -bs=4k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=write > ./fio_result/4k/write_4k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=write -direct=1 -buffered=0 -thread -size=110g -bs=4k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=write > ./fio_result/4k/write_4k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=read -direct=1 -buffered=0 -thread -size=5g -bs=4k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=read > ./fio_result/4k/read_4k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=read -direct=1 -buffered=0 -thread -size=110g -bs=4k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=read > ./fio_result/4k/read_4k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randwrite -direct=1 -buffered=0 -thread -size=5g -bs=4k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randwrite > ./fio_result/4k/randwrite_4k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randwrite -direct=1 -buffered=0 -thread -size=110g -bs=4k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randwrite > ./fio_result/4k/randwrite_4k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randread -direct=1 -buffered=0 -thread -size=5g -bs=4k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randread > ./fio_result/4k/randread_4k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randread -direct=1 -buffered=0 -thread -size=110g -bs=4k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randread > ./fio_result/4k/randread_4k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixwrite=70 -direct=1 -buffered=0 -thread -size=5g -bs=4k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/4k/randrw_mixwrite_70_4k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixwrite=70 -direct=1 -buffered=0 -thread -size=110g -bs=4k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/4k/randrw_mixwrite_70_4k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixread=70 -direct=1 -buffered=0 -thread -size=5g -bs=4k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/4k/randrw_mixread_70_4k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixread=70 -direct=1 -buffered=0 -thread -size=110g -bs=4k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/4k/randrw_mixread_70_4k.txt
 # #复制4k测试到report目录，并打印出cp命令执行的结果
 if ls ../../report/fio/4k/
 then
@@ -56,17 +56,17 @@ echo "cp retrun is $?"
      
 mkdir -p ./fio_result/128k
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=write -direct=1 -buffered=0 -thread -size=5g -bs=128k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=write > ./fio_result/128k/write_128k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=write -direct=1 -buffered=0 -thread -size=110g -bs=128k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=write > ./fio_result/128k/write_128k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=read -direct=1 -buffered=0 -thread -size=5g -bs=128k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=read > ./fio_result/128k/read_128k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=read -direct=1 -buffered=0 -thread -size=110g -bs=128k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=read > ./fio_result/128k/read_128k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randwrite -direct=1 -buffered=0 -thread -size=5g -bs=128k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randwrite > ./fio_result/128k/randwrite_128k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randwrite -direct=1 -buffered=0 -thread -size=110g -bs=128k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randwrite > ./fio_result/128k/randwrite_128k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randread -direct=1 -buffered=0 -thread -size=110g -bs=128k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randread > ./fio_result/128k/randread_128k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randread -direct=1 -buffered=0 -thread -size=110g -bs=128k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randread > ./fio_result/128k/randread_128k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixwrite=70 -direct=1 -buffered=0 -thread -size=5g -bs=128k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/128k/randrw_mixwrite_70_128k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixwrite=70 -direct=1 -buffered=0 -thread -size=110g -bs=128k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/128k/randrw_mixwrite_70_128k.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixread=70 -direct=1 -buffered=0 -thread -size=5g -bs=128k -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/128k/randrw_mixread_70_128k.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixread=70 -direct=1 -buffered=0 -thread -size=110g -bs=128k -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/128k/randrw_mixread_70_128k.txt
 # #复制128k测试到report目录，并打印出cp命令执行的结果
 if ls ../../report/fio/128k/
 then
@@ -82,17 +82,17 @@ echo "cp retrun is $?"
 
 mkdir -p ./fio_result/1M
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=write -direct=1 -buffered=0 -thread -size=5g -bs=1M -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=write > ./fio_result/1M/write_1M.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=write -direct=1 -buffered=0 -thread -size=110g -bs=1M -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=write > ./fio_result/1M/write_1M.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=read -direct=1 -buffered=0 -thread -size=5g -bs=1M -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=read > ./fio_result/1M/read_1M.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=read -direct=1 -buffered=0 -thread -size=110g -bs=1M -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=read > ./fio_result/1M/read_1M.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randwrite -direct=1 -buffered=0 -thread -size=5g -bs=1M -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randwrite > ./fio_result/1M/randwrite_1M.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randwrite -direct=1 -buffered=0 -thread -size=110g -bs=1M -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randwrite > ./fio_result/1M/randwrite_1M.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randread -direct=1 -buffered=0 -thread -size=5g -bs=1M -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randread > ./fio_result/1M/randread_1M.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randread -direct=1 -buffered=0 -thread -size=110g -bs=1M -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randread > ./fio_result/1M/randread_1M.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixwrite=70 -direct=1 -buffered=0 -thread -size=5g -bs=1M -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/1M/randrw_mixwrite_70_1M.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixwrite=70 -direct=1 -buffered=0 -thread -size=110g -bs=1M -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/1M/randrw_mixwrite_70_1M.txt
 sync && echo 3 > /proc/sys/vm/drop_caches
-fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixread=70 -direct=1 -buffered=0 -thread -size=5g -bs=1M -numjobs=4 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/1M/randrw_mixread_70_1M.txt
+fio -filename=$FILENAME -ioengine=psync -time_based=1 -rw=randrw -rwmixread=70 -direct=1 -buffered=0 -thread -size=110g -bs=1M -numjobs=16 -iodepth=1 -runtime=$RUNTIME -lockmem=1G -group_reporting -name=randrw > ./fio_result/1M/randrw_mixread_70_1M.txt
 # #复制1M测试到report目录，并打印出cp命令执行的结果
 if ls ../../report/fio/1M/
 then
