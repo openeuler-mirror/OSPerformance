@@ -47,7 +47,7 @@ ent_a="\\n"
 sc_b="1\\n"
 
 #The $size_c variable is the input parameter of 2048, custom made
-size_c="16384\\n"
+size_c="1024\\n"
 
 #The $sele_d variable is a customized input parameter no
 sele_d="no\\n"
