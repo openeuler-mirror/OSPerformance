@@ -15,6 +15,8 @@ Operating Systems performance Tool.
 
 #### 使用说明
 
+克隆OSPerformance到本地之后，进入OSPerformance目录，各个性能测试工具执行方法如下：
+
 1. stream:
    执行python3 stream.py可进行测试，测试将结果存放在report/stream目录下。
 
